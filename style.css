@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope&family=Montserrat&family=Oswald&display=swap');
+
+@font-face { /* police pour le body */
+    font-family: "DMSerif";
+    src: url(./assets/fonts/DMSerifDisplay-Regular.ttf);
+}
+/* L'étoile donne du style à tous les éléménts ou mieux enlève le style qui est donné par défaut, en écrivant les deux lignes à 0 */
+/* * {
+    margin: 0;
+    padding: 0;
+} */
+
+body { /* police pour le body, mais si dans h1 par ex j'ai une autre police c'est celle la qui va primer, c'est-à-dire la Oswald */
+    font-family: "DMSerif", Verdana; 
+    /* background: red;  /* on peut mettre tout ca, mai il y a mieux
+    background-image: ;
+    background-position: ;
+    background-repeat: ; */
+    background: url(./assets/img/bg.jpg) no-repeat center/cover;
+    /* pour que l'image soit 100% de la taille de l'écran viewport height */
+    min-height: 100vh;
+}
+
+h1 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    font-size: 2.5rem;
+    text-shadow: 3PX 3px 8px #00000042; /* sur la console */
+    color: #ab0ef4;
+    /* font-family:'Oswald', sans-serif;  on la met ici quand elle est importée en haut @import url.., si le lien @import url... ne marche plus, la police prend sans-serif */
+}
+/* *********************************************** */
+
+/* **********Les background lignes 14_16 ********* */
+
+/************ la grande boîte blanche ************** */
+main {
+    min-height: 500px; /* ça fait min 500px */
+    width: 90%; /* 90% de la taille de la page */
+    background: white;
+     /* centrer une boîte */ 
+     margin: 0 auto;
+     padding: 15px;
+     border: 2px solid blue;
+     border-radius: 20px 20px 0 0;
+     box-shadow: 4px -4px 18px 6px #226652; /* on va dans la console blur=flou, margin=ext, padding= int*/
+}
+h2 {
+    margin: 0; /* enlève les margin par défaut, pour égaliser au niveau de la lettre F de Flex dans les coins*/
+}
+
+   /*   ici on pzrle des " boîtes */
+.flexbox,
+.grid,
+.absolute { /* pour dessiner une petite boîte, qui a une border et une border radius, padding et margin */
+   border: 2px solid skyblue; 
+   border-radius: 20px;
+   margin-top: 20px;
+   padding: 10px;
+   margin-top: 20px;
+   min-height: 150px;
+}
+
+.flexbox ul { /* le parent de li, à voir dans la console le dsplay flex avec une icone et toutes le spossibilités */
+    display: flex;/* bonne répartition en page */
+    justify-content: center;
+    
+}
+
+.flexbox li { /* enlève les bulles d'une liste devant, on va disposer le boîte 1 boîte 2 en boîte avec height=hauteur et width= largeur */
+    
+    height: 160px;  /* élargit le cadre de la boîte */
+    width: 160px;    /* ça espace les boîtes 1 2 3 */
+    margin: 10px; /* des marges entre les boîtes */
+    background: turquoise;
+    /* centrer un unique élément boîte 1 est dans le coin , pour le centrer */
+    
+    display: flex;           
+    justify-content: center; /* pour centrer en haut */
+    align-items: center;    /* pour centrer Boîte 1 ... au centre */
+
+}       
+     /*  Grid  */
+.grid-container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+.grid img {
+    width: 80%;
+    /* margin-top: 20px; */
+    margin: 20px auto;
+    display: block;
+}
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "i1 i2" /* button 1 2 */
+    "ta ta "
+    "vi bt";
+}
+input, 
+textarea {
+    margin: 5px;
+    border: 1px solid darkblue;
+    padding: 10px;
+    font-size: 1.1rem;
+    font-family: "DMSerif";
+    border-radius: 5px;
+}
+
+textarea {
+    grid-area: ta;
+    height: 40px;
+    resize: none;
+}
+#btn-submit {
+    grid-area: bt;
+    cursor: pointer; 
+    background: teal;
+    /* transition: 0.2s; */
+}
+#btn-submit:hover {
+    background: cyan;
+    color: white;
+    transition: 0.2s;
+}
+  /* Absolute  */
+  .absolute { /* il faut mettre une position relative pour que le cercle se mette la ou on veut */
+    position: relative;
+  }
+  
+#circle1 {
+    height: 80px;
+    width: 80px;
+    background: cyan;
+    position: absolute;
+    border-radius: 150px;
+    top: 0;
+    right: 0;
+  }
+
+#circle2 {
+    height: 40px;
+    width: 40px;
+    background: #226652;
+    position: absolute;
+    border-radius: 150px;
+    transform: translateX(-50%);
+}
+/* Le responsive */
+
+@media screen and (max-width:900px) {
+    
+    .grid-container {
+        display: block;
+    }
+    .grid-container img {
+        width: 40%;
+    }
+}
+@media screen and (max-width: 610px) {
+    .flexbox ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    form {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: 
+        "i1"
+        "i2"
+        "ta"
+        "bt";
+    }
+input,
+textarea {
+    font-size: 0.8em;
+}
+}
